@@ -28,33 +28,35 @@ abstract class view {
 </head>
 
  <body>
+ 	<div class="navbar navbar-inverse navbar-static-top">
+ 		<div class="container">
+ 			<a href="#" class="navbar-brand">InstiStats</a>
+ 			<ul class="nav navbar-nav navbar-right">
+ 				<li><a href="viewSearch.php">Home</a></li>
+ 				<li><a href="viewSearch.php">Search</a></li>
+ 				<li><a href="savedView.php">My Favorites</a></li>
+ 			</ul>
+ 		</div>
+ 	</div>
   	<div class="container">
-       <h1>College Facts</h1>
-       <h4>The fastest and easiest way to get data on thousands of colleges across the US</h4>
+       <h1>InstiStats</h1>
+       <h4>The fastest, easiest way to get data on US colleges</h4>
           <?php
   }
 	protected function content(){
 		
 	?>
-  
-  <!--       <div class="row">
-       	<div class="lead">
-       	<div class="col-md-3">Hi this is just a test. I'm in a 3-column column, lihj boihbo iuah sbdo lpij hasbd,n ijbas d  lhjb doq uhb lhuv usw hjnjd</div>
-       	</div>
-       	<div class="col-md-9">Hi this is just a test. I'm in a 9-column column, qaoiuygroqiwhbd louhwbvdlahj wdlquwhd  oquwhbdqlwjd </div>
-        <div class="col-md-9"></div>
-  </div>   -->
-    </div>
+ 
  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
  
-
+	<footer class="footer">
      <p>&copy; Copyright  by Noam Lustiger</p>
     </footer>
-  </div>
+
 </body>
 </html>
 <?php
