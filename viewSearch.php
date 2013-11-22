@@ -15,13 +15,13 @@ class viewSearch extends view{
 
 		<div class="container">
 			<div class="col-md-3 col-md-offset-7">
-				<form action="viewFavorites" method="post">
-					<input type="button" class="btn btn-warning" name="saved" value="View my saved colleges"> 
-				</form>
+				
+				<a href="savedView.php"><button class="btn btn-warning btn-block">View my saved colleges</button></a>
 			</div>
 		</div>
+		
 	<?php
-
+		
 		$search = new search;
 		$results = search::select();
 		if(!empty($results)){
@@ -49,7 +49,9 @@ class viewSearch extends view{
 				</table>
 			</div>
 		</div>"; 	
-		}	
+		}
+		
+		//print_r($_SESSION);	
 	}
 }
 $view = new viewSearch;
