@@ -4,14 +4,33 @@ include_once('database.php');
 class saved {
 	
 	public static $comps=array();
+	public $favorites=array();
 	public $results=array();
 	public $aid=array();
 	
-	public function getFinance(){
-		session_start();
-		
+	public function getFavorites(){
 		$this->comps = $_SESSION['comp'];
+		$db = database::getDB();
+		$select = 'SELECT instName, state FROM generalInfo2012 WHERE instID = :ID';
+		$STH = $db->prepare($select);
+		$STH->setFetchMode(PDO::FETCH_ASSOC); 
 		
+		foreach($this->comps as $ID) {
+			$remove = "<button value = 'remove'>";
+			$STH->bindParam(':ID', $ID);
+			$STH->execute();
+			$result = $STH->fetch();
+			$this->favorites[] = $result; 
+			
+			
+		}
+		return $this->favorites;
+	
+	}
+	
+	public function getFinance(){	
+		
+	
 		$db = database::getDB();
 		$select = 'SELECT g.instName, f.* FROM generalInfo2012 g INNER JOIN finance2011 f ON g.instID = f.instID
 				WHERE g.instID = :ID';
@@ -27,7 +46,7 @@ class saved {
 		}
 	
 		return $this->results;
-		
+			
 	}
 	public function getAid(){
 		
