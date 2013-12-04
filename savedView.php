@@ -7,8 +7,7 @@ class savedView extends view {
 		
 	public function content(){
 		
-		?>
-			
+		?>			
 			<div class="col-md-3 col-md-offset-7">
 				
 				<a href="viewSearch.php"><button class="btn btn-warning">Search for more colleges</button></a>
@@ -38,7 +37,7 @@ class savedView extends view {
 			echo"</tr>";
 		}
 		echo"</table> </h4>";
-		//<br>
+	//<br>
 		//<input type="submit" value = "remove" name "remove"> </input>
 		
 	//<?php
@@ -87,8 +86,6 @@ class savedView extends view {
 			</div>
 		</div>
 		
-			
-		
   <?php	   		
  		
   		$aid = $saved->getAid();
@@ -128,20 +125,15 @@ class savedView extends view {
 									$val = $val .'%';
 								}               
 							    echo "
-						   		<td> $val</td>";
-									
+						   		<td> $val</td>";							
 						   }
 					   		 $n++;					    	 
 						}
-
-						echo "</tr>";
-						
+						echo "</tr>";						
 				     }				 		
 			?> </table>
 			</div>
-		</div>
-			
-				
+		</div>							
 	<?php	
 	  } else {
 	  	echo"<h3>You have no saved institutions.</h3>";
