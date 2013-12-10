@@ -4,10 +4,11 @@ include_once('database.php');
 class saved {
 	
 	public static $comps=array();
-	public $favorites=array();
-	public $results=array();
+	private $favorites=array();
+	private $results=array();
 	private $finance_formatted = array();
-	public $aid=array();
+	private $aid=array();
+	private $aid_formatted = array();
 	
 	public function getFavorites(){
 		$this->comps = $_SESSION['comp'];
@@ -80,9 +81,29 @@ class saved {
 			$STH->execute();
 			$result = $STH->fetch();
 			$this->aid[] = $result; 
+			
+			$aid_formatted = $result;
+			$i = 0;
+			foreach ($aid_formatted as $k=>&$v){
+				$i++;
+				if($i > 3){
+					$v = number_format($v);		
+					if($i!==3 && $i!==6 && $i!==9){
+						$v = '$'. $v;
+				    }elseif($i==6 || $i==9)	{
+						$v = $v .'%';
+					} 			
+				}				              
+			}
+		//print_r($aid_formatted);
+		$this->aid_formatted[] = $aid_formatted;
 		}
-	//print_r($this->results);
-		return $this->aid;
+	    $aidFields= array(array('Name','ID','Total undergraduates','Total grants','Avg. grant per undergrad',
+			'Percent of undergraduates receiving Pell grants','Total Pell grants','Avg. Pell grant per undergrad',
+			'Percent of undergraduates receiving federal grants','Total federal grants','Avg. federal grant per undergrad'));
+		$aidFields = array_splice($this->aid_formatted, 0,0, $aidFields);	
+		//print_r($this->aid_formatted);
+		return $this->aid_formatted;
 	}
 }
 //$saved=new saved;
