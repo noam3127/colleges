@@ -20,27 +20,52 @@ class savedView extends view {
 	if(array_key_exists('comp', $_SESSION)){
 		$favorites = $saved->getFavorites();
 		?>
-		<h4 class="col-md-5 col-md-offset-1">
+		<div class="col-md-5 col-md-offset-1">
+		<h4> 
 		<?php	
+	//	print_r($_SESSION);
 		$n = 1;
-		$remove = "<input type='checkbox' value='remove'>";
+		echo "<form method = 'post' action=''>";
 		//print_r($favorites);
-		echo "<table class ='table table-striped table-bordered table-condensed'>
+		echo "<table class ='table table-striped table-bordered table-condensed''>
 				<thead><span class='lead'>Saved Institutions</span></thead> <tr>";
 		foreach($favorites as $k=>$sub){
+		//	print_r($sub);
+			$remove = "	<input type='checkbox' name ='removeID[]' value='" . $sub['instID']."'";
 			//echo "<div class='lead'> remove";	  
 			array_unshift($sub,$remove);
+			$y=1;
 			foreach($sub as $field=>$val){
-				
-				echo '<td>'. $val. '  ';			
+				$y++;
+				if($y!=4){
+				  echo '<td> '. $val. '  ';	
+				}		
 			}
 			echo"</tr>";
 		}
-		echo"</table> </h4>";
-	//<br>
-		//<input type="submit" value = "remove" name "remove"> </input>
+		echo"</table></h4>";
+?> 
+		<input type="submit" name="remove" value ="remove" style = "clear:both">
+		</form>
 		
-	//<?php
+	</div>
+	
+<?php	
+
+		if(isset($_POST['removeID'])){
+			foreach($_POST['removeID'] as $ID){
+				
+			  // if(in_array($ID, $_SESSION['comp'])){
+				  $rid = array_search($ID, $_SESSION['comp']);
+				  unset($_SESSION['comp'][$rid]);
+				  header('Location:');
+			   //}
+				
+			}
+			echo "<br><br>";
+				
+		}
+	
 		$finance = $saved->getFinance();
 		//unset($finance['instID']);
 		$financeFields = array(array('Name','ID','Total assets','Total liabilities','Net assets',
@@ -57,7 +82,7 @@ class savedView extends view {
 	//	print_r($ordered);
 	?>	
 		<div class"container">
-				<div class="col-sm-10 col-sm-offset-1">
+				<div class="col-sm-10 col-sm-offset-1"><br><br>
 					<span class="lead">Financial Data for 2011</span>
 			<table class ="table table-striped table-bordered table-condensed ">
   <?php	   $i = 1;	
@@ -115,8 +140,7 @@ class savedView extends view {
 						   		<td> $val</td>";	
 						 	  
 						     } else{
-						 		//$n=3;	
-								//$n++; 
+
 						 	    $val = number_format($val);
 								
 								if($n!==3 && $n!==6 && $n!==9){
