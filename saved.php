@@ -6,12 +6,13 @@ class saved {
 	public static $comps=array();
 	public $favorites=array();
 	public $results=array();
+	private $finance_formatted = array();
 	public $aid=array();
 	
 	public function getFavorites(){
 		$this->comps = $_SESSION['comp'];
 		$db = database::getDB();
-		$select = 'SELECT instName, state FROM generalInfo2012 WHERE instID = :ID';
+		$select = 'SELECT instName, instID, state FROM generalInfo2012 WHERE instID = :ID';
 		$STH = $db->prepare($select);
 		$STH->setFetchMode(PDO::FETCH_ASSOC); 
 		
@@ -41,11 +42,28 @@ class saved {
 		foreach($this->comps as $ID) {
 			$STH->bindParam(':ID', $ID);
 			$STH->execute();
-			$result = $STH->fetch();
+			$result = $STH->fetch();			
 			$this->results[] = $result; 
+			
+			$finance_formatted = $result;	
+			$i = 0;
+			foreach($finance_formatted as $k => &$v){
+				$i++;
+				if($i > 2){
+					$v = '$' . number_format($v);			
+				}
+				
+			}
+			
+			$this->finance_formatted[] = $finance_formatted; 
+				
 		}
-	
-		return $this->results;
+		$financeFields = array(array('Name','ID','Total assets','Total liabilities','Net assets',
+			'Net amount of tuition and fees','Total amount of revenue and income'));
+			
+		$financeFields = array_splice($this->finance_formatted, 0,0, $financeFields);
+		//print_r($this->finance_formatted);
+		return $this->finance_formatted;
 			
 	}
 	public function getAid(){
