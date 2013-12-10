@@ -67,12 +67,7 @@ class savedView extends view {
 		}
 	
 		$finance = $saved->getFinance();
-		//unset($finance['instID']);
-		$financeFields = array(array('Name','ID','Total assets','Total liabilities','Net assets',
-			'Net amount of tuition and fees','Total amount of revenue and income'));
-			
-		$financeFields = array_splice($finance, 0,0, $financeFields);
-		
+	
 		foreach($finance as $sub){
 			$i=0;
 			foreach($sub as $v){ 
@@ -94,18 +89,13 @@ class savedView extends view {
 							 if($i<=count($sub)){
 						 	    echo "<td class='warning'><h5>$val</h5></td>";
 							    $i++;
-						 } 	elseif($n<=2){	
+						 } 	else {	
 							    echo "
-						   		  <td>$val</td>";	
-								  $n++;
-						 }	else {
-						 		$val = '$'. number_format($val); 
-						 	    echo "
-						 	    	<td>$val</td>";
-						 }				   							    	 
-						}
-						echo "</tr>";
-				     }				 		
+						   		  <td>$val</td>";								  
+						 }							    	 
+					   }
+					echo "</tr>";
+				   }				 		
 			?> </table>
 			
 			</div>
@@ -114,12 +104,7 @@ class savedView extends view {
   <?php	   		
  		
   		$aid = $saved->getAid();
-		//unset($aid['instID']);
-		//print_r($aid);
-		$aidFields= array(array('Name','ID','Total undergraduates','Total grants','Avg. grant per undergrad',
-			'Percent of undergraduates receiving Pell grants','Total Pell grants','Avg. Pell grant per undergrad',
-			'Percent of undergraduates receiving federal grants','Total federal grants','Avg. federal grant per undergrad'));
-		$aidFields = array_splice($aid, 0,0, $aidFields);	
+		
 	?>	<br><div class="col-sm-10 col-sm-offset-1">
 				<table class ="table table-striped table-bordered table-condensed">
 					<span class="lead">Aid received for 2011-2012</span>
@@ -127,34 +112,21 @@ class savedView extends view {
 	
 		 $i = 0;
 					 foreach($aid as $sub){
-						$n = 1;	
-						echo"<tr>";	
-						               
+					
+						echo"<thead><tr>";							               
 						foreach($sub as $val){
 							$i++;
 							 if($i<=count($sub)){
-						 	   echo "<td class='warning'><h5>$val</h5></td>";
-							
-						     }elseif($n<=2){
+						 	   echo "<td class='warning'><h5>$val</h5></td>";							
+						     }else{
 						 	   echo "
-						   		<td> $val</td>";	
-						 	  
-						     } else{
-
-						 	    $val = number_format($val);
-								
-								if($n!==3 && $n!==6 && $n!==9){
-									$val = '$'. $val;
-								}elseif($n==6 || $n==9)	{
-									$val = $val .'%';
-								}               
-							    echo "
-						   		<td> $val</td>";							
-						   }
+						   		<td> $val</td>";						 	  
+						     }               							   
 					   		 $n++;					    	 
 						}
+						
 						echo "</tr>";						
-				     }				 		
+				    }				 		
 			?> </table>
 			</div>
 		</div>							
