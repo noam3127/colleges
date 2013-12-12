@@ -1,5 +1,7 @@
 <?php
 abstract class view {
+	
+	protected $title = 'InstiStats | Search';
 	public function __construct() {
 ?>
 
@@ -7,13 +9,14 @@ abstract class view {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	
   <meta charset="utf-8">
 
   <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame 
        Remove this if you use the .htaccess -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>view</title>
+  <title><?php echo $this->title; ?></title>
   <meta name="description" content="college data">
   <meta name="author" content="Noam Lustiger">
 
@@ -38,7 +41,7 @@ abstract class view {
  			</ul>
  		</div>
  	</div>
-  	<div class="container">
+  	<div class="container col-md-offset-1">
        <h1>InstiStats</h1>
        <h4>The fastest, easiest way to get data on US colleges</h4>
           <?php
@@ -52,10 +55,27 @@ abstract class view {
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="js/bootstrap.min.js"></script>
+    
+ <?php 
+	//}
+ //protected function __destruct(){
+ 	}
  
-	<footer class="footer">
-     <p>&copy; Copyright  by Noam Lustiger</p>
-    </footer>
+
+	public function __destruct(){
+	
+?>
+<div style="overflow:auto; padding-bottom:50px;height: 240px; min-height:100% !important; margin-bottom:50px"></div> 
+
+<footer class="footer" style="position:relative; margin-top:75px; height:50px; clear:both; padding-top:10px;background:linear-gradient(to left, white 15%, #5d4e48 45%, white 85%);">
+    <div class="container" style="margin:0 auto">
+        <div class="row  col-md-offset-9">
+            <div class="span2" style="font-family: 'Trajan Pro', copperplate" >
+     &copy; Copyright  by Noam Lustiger
+     		</div>
+     	</div>
+     </div>
+</footer>-
 
 </body>
 </html>
