@@ -4,7 +4,9 @@ include_once('view.php');
 include_once('saved.php');
 
 class savedView extends view {
-		
+	
+	protected $title = 'InstiStats | MyFavorites';
+	
 	public function content(){
 		
 		?>			
