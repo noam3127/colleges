@@ -1,6 +1,7 @@
 <?php
 
 include_once('database.php');
+include_once('formatter.php');
 
 class characteristics {
 	
@@ -29,6 +30,7 @@ class characteristics {
 	    	INNER JOIN generalInfo2012 g ON a.instID = g.instID WHERE f.instID = :ID ';
 		 $results = $this->query($select, $ID);
 		self::$rows = $results;
+		$results = self::format($results);
 		return $results;
 	
 	}
@@ -40,6 +42,7 @@ class characteristics {
 		$STH->execute();
 		$STH->setFetchMode(PDO::FETCH_ASSOC); 
 		$results = $STH->fetchAll();
+		
 		return $results;
 	}
 	
@@ -52,6 +55,26 @@ class characteristics {
 		}
 		
 		return $name;
+	}
+	public static function format($results){
+		
+		foreach ($results as &$val){
+			$i=0;
+			foreach($val as $k=>&$v){
+				
+				if($i>1){
+					$v = number_format($v);		
+					if($i!=2 && $i!=10 && $i!=13){
+						$v = '$'. $v;
+					}else{
+						$v = $v . '%'; 				
+					}
+				}
+				$i++;	
+			}
+			
+		}
+		return $results;
 	}
 }
 
