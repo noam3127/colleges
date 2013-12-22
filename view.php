@@ -27,7 +27,32 @@ abstract class view {
 
   <!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
   <link rel="shortcut icon" href="/favicon.ico">
-  <title>College Data</title>
+  
+  <style type="text/css">
+  	#map-canvas{
+  		margin-left: 300px;
+  		height: 300px;
+  		width:500px;
+  	}
+  </style>
+  
+  <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
+    
+ <!-- <script type="text/javascript">
+      function initialize() {
+        var mapOptions = {
+          center: new google.maps.LatLng(-34.397, 150.644),
+          zoom: 8
+        };
+        var map = new google.maps.Map(document.getElementById("map-canvas"),
+            mapOptions);
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+ </script>-->
+
+
 </head>
 
  <body>
@@ -41,15 +66,21 @@ abstract class view {
  			</ul>
  		</div>
  	</div>
+ 	<?php
+ 	}
+	 public function showName(){
+?>	 
+	
   	<div class="container col-md-offset-1">
        <h1>InstiStats</h1>
        <h4>The fastest, easiest way to get data on US colleges</h4>
+     
           <?php
   }
 	protected function content(){
-		
+			
 	?>
- 
+ 	
  
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://code.jquery.com/jquery.js"></script>
@@ -63,15 +94,16 @@ abstract class view {
  
 
 	public function __destruct(){
+		
 	
 ?>
-<div style="overflow:auto; padding-bottom:50px;height: 240px; min-height:100% !important; margin-bottom:50px"></div> 
+<div style="overflow:auto; height: 240px; min-height:100% !important"></div> 
 
-<footer class="footer" style="position:relative; margin-top:75px; height:50px; clear:both; padding-top:10px;background:linear-gradient(to left, white 15%, #5d4e48 45%, white 85%);">
+<footer class="footer" style="position:relative; margin-top:75px; height:70px; clear:both; padding-top:10px; background:linear-gradient(to left, white 15%, #000 45%, white 85%);">
     <div class="container" style="margin:0 auto">
-        <div class="row  col-md-offset-9">
-            <div class="span2" style="font-family: 'Trajan Pro', copperplate" >
-     &copy; Copyright  by Noam Lustiger
+        <div class="row  col-md-offset-5">
+            <div class="span2" style="font-family: 'Trajan Pro', copperplate, serif; color: white; padding:15px;" >
+     &copy; Copyright 2013 Noam Lustiger
      		</div>
      	</div>
      </div>
